@@ -41,12 +41,12 @@ public class LivroController {
     }
 
     @PutMapping("/livros/{id}")
-    public ResponseEntity<Livro> modificaLivro(@PathVariable Long id, @RequestBody Livro livro) {
-        Optional<Livro> livroExistente = livroService.getLivro(id);
-        if (livroExistente.isPresent()) {
-            livroExistente.get().setAutor(livro.getAutor());
-            livroExistente.get().setTitulo(livro.getTitulo());
-            return new ResponseEntity<>(livroService.salvaLivro(livroExistente.get()), HttpStatus.OK);
+    public ResponseEntity<Livro> modificaLivro(@PathVariable Long id, @RequestBody Livro novoLivro) {
+        Optional<Livro> livro = livroService.getLivro(id);
+        if (livro.isPresent()) {
+            livro.get().setAutor(novoLivro.getAutor());
+            livro.get().setTitulo(novoLivro.getTitulo());
+            return new ResponseEntity<>(livroService.salvaLivro(livro.get()), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -51,4 +51,15 @@ public class LivroController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/livros/{id}")
+    public ResponseEntity<Livro> removeLivro(@PathVariable Long id) {
+        Optional<Livro> livro = livroService.getLivro(id);
+        if (livro.isPresent()) {
+            livroService.removeLivro(livro.get());
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

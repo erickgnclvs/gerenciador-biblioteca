@@ -21,7 +21,7 @@ public class LivroService {
         return livroRepository.findAll();
     }
 
-    public void addLivro(Livro livro) {
-        livroRepository.save(livro);
+    public Livro adicionaLivro(Livro livro) {
+        return livroRepository.save(livro);
     }
 }

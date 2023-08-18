@@ -20,14 +20,12 @@ public class LivroController {
     }
 
     @GetMapping("/livros")
-    public ResponseEntity<List<Livro>> getLivros() {
-        List<Livro> livros = livroService.getLivros();
-        return new ResponseEntity<>(livros, HttpStatus.OK);
+    public List<Livro> getLivros() {
+        return livroService.getLivros();
     }
 
     @PostMapping("/livros")
-    public ResponseEntity<Livro> adicionaLivro(@RequestBody Livro livro) {
-        Livro novoLivro = livroService.adicionaLivro(livro);
-        return new ResponseEntity<>(novoLivro, HttpStatus.CREATED);
+    public Livro adicionaLivro(@RequestBody Livro livro) {
+        return livroService.adicionaLivro(livro);
     }
 }

@@ -1,5 +1,6 @@
 package com.erick.gerenciadorbiblioteca.controller;
 
+import com.erick.gerenciadorbiblioteca.model.Livro;
 import com.erick.gerenciadorbiblioteca.model.Usuario;
 import com.erick.gerenciadorbiblioteca.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,15 @@ public class UsuarioController {
             return new ResponseEntity<>(usuarioService.salvaUsuario(usuario), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+    }
+
+    @GetMapping("/usuarios/{id}")
+    public ResponseEntity<Usuario> getUsuario(@PathVariable Long id) {
+        if (usuarioService.getUsuario(id).isPresent()) {
+            return new ResponseEntity<>(usuarioService.getUsuario(id).get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

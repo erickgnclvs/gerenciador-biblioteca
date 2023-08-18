@@ -41,7 +41,7 @@ GET http://localhost:8080/api/v1/livros
 GET http://localhost:8080/api/v1/livros/1
 
 ###
-PUT http://localhost:8080/api/v1/livros/1
+PUT http://localhost:8080/api/v1/livros/3
 Content-Type: application/json
 
 {

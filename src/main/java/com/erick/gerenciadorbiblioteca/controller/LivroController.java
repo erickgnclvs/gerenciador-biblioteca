@@ -37,7 +37,13 @@ public class LivroController {
 
     @PostMapping("/livros")
     public ResponseEntity<Livro> adicionaLivro(@RequestBody Livro livro) {
-        return new ResponseEntity<>(livroService.salvaLivro(livro), HttpStatus.CREATED);
+        Livro livroSalvo = livroService.salvaLivro(livro);
+        if (livroSalvo != null) {
+            return new ResponseEntity<>(livroSalvo, HttpStatus.CREATED);
+        } else {
+            // Modificar aqui, está retornando 500 ao invés de 409
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
 
     @GetMapping("/livros/{id}")
@@ -55,7 +61,13 @@ public class LivroController {
         if (livro.isPresent()) {
             livro.get().setAutor(novoLivro.getAutor());
             livro.get().setTitulo(novoLivro.getTitulo());
-            return new ResponseEntity<>(livroService.salvaLivro(livro.get()), HttpStatus.OK);
+            Livro livroAtualizado = livroService.salvaLivro(livro.get());
+            if (livroAtualizado != null) {
+                return new ResponseEntity<>(livroAtualizado, HttpStatus.OK);
+            } else {
+                // Modificar aqui, está retornando 500 ao invés de 409
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

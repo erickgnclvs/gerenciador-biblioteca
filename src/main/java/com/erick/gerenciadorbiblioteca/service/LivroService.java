@@ -33,4 +33,8 @@ public class LivroService {
     public void removeLivro(Livro livro) {
         livroRepository.delete(livro);
     }
+
+    public Optional<List<Livro>> buscaLivros(String pesquisa) {
+        return livroRepository.findAllByAutorContainingIgnoreCaseOrTituloContainingIgnoreCase(pesquisa, pesquisa);
+    }
 }

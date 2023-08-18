@@ -22,8 +22,17 @@ public class LivroController {
     }
 
     @GetMapping("/livros")
-    public ResponseEntity<List<Livro>> getLivros() {
-        return new ResponseEntity<>(livroService.getLivros(), HttpStatus.OK);
+    public ResponseEntity<List<Livro>> getLivros(@RequestParam(required = false) String pesquisa) {
+        if (pesquisa != null) {
+            Optional<List<Livro>> livrosPesquisa = livroService.buscaLivros(pesquisa);
+            if (livrosPesquisa.isPresent()) {
+                return new ResponseEntity<>(livrosPesquisa.get(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        } else {
+            return new ResponseEntity<>(livroService.getLivros(), HttpStatus.OK);
+        }
     }
 
     @PostMapping("/livros")

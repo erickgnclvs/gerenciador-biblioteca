@@ -1,6 +1,5 @@
 package com.erick.gerenciadorbiblioteca.service;
 
-import com.erick.gerenciadorbiblioteca.model.Livro;
 import com.erick.gerenciadorbiblioteca.model.Usuario;
 import com.erick.gerenciadorbiblioteca.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

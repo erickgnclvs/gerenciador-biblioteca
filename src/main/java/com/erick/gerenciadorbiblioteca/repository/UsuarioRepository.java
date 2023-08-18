@@ -1,6 +1,5 @@
 package com.erick.gerenciadorbiblioteca.repository;
 
-import com.erick.gerenciadorbiblioteca.model.Livro;
 import com.erick.gerenciadorbiblioteca.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 

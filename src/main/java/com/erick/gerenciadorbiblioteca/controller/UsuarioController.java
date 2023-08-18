@@ -53,4 +53,21 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping("/usuarios/{id}")
+    public ResponseEntity<Usuario> modificaUsuario(@PathVariable Long id, @RequestBody Usuario novoUsuario) {
+        Optional<Usuario> usuario = usuarioService.getUsuario(id);
+        if (usuario.isPresent()) {
+            usuario.get().setEmail(novoUsuario.getEmail());
+            usuario.get().setNome(novoUsuario.getNome());
+            usuario.get().setTelefone(novoUsuario.getTelefone());
+            try {
+                return new ResponseEntity<>(usuarioService.salvaUsuario(usuario.get()), HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

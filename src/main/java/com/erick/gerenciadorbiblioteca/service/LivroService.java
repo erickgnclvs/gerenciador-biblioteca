@@ -22,7 +22,7 @@ public class LivroService {
         return livroRepository.findAll();
     }
 
-    public Livro adicionaLivro(Livro livro) {
+    public Livro salvaLivro(Livro livro) {
         return livroRepository.save(livro);
     }
 

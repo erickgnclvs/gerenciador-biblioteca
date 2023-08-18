@@ -1,0 +1,34 @@
+###
+POST http://localhost:8080/api/v1/livros
+Content-Type: application/json
+
+{
+  "titulo": "Harry Potter e as Relíquias da Morte parte 1",
+  "autor": "J.K. Rowling"
+}
+
+<> 2023-08-17T232023.201.json
+<> 2023-08-17T230158.201.json
+<> 2023-08-17T225717.200.json
+<> 2023-08-17T225509.201.json
+<> 2023-08-17T225120.200.json
+<> 2023-08-17T225025.200.json
+
+###
+GET http://localhost:8080/api/v1/livros
+
+<> 2023-08-17T230218.200.json
+
+###
+GET http://localhost:8080/api/v1/livros/1
+
+###
+PUT http://localhost:8080/api/v1/livros/1
+Content-Type: application/json
+
+{
+  "titulo": "As Crônicas de Nárnia",
+  "autor": "C.S. Lewis"
+}
+
+<> 2023-08-18T113702.200.json

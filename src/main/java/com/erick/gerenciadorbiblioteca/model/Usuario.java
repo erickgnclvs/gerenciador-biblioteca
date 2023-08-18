@@ -1,10 +1,9 @@
 package com.erick.gerenciadorbiblioteca.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +19,8 @@ public class Usuario {
     @Email
     @Column(unique = true, nullable = false)
     private String email;
+    @OneToMany(mappedBy = "usuario")
+    private List<Emprestimo> emprestimos;
 
     public Usuario() {
     }
@@ -35,6 +36,14 @@ public class Usuario {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
+    }
+
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
     }
 
     public Long getId() {
@@ -76,6 +85,7 @@ public class Usuario {
                 ", nome='" + nome + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", email='" + email + '\'' +
+                ", emprestimos='" + emprestimos + '\'' +
                 '}';
     }
 

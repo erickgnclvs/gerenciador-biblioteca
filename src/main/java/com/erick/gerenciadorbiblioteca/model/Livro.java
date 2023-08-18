@@ -1,9 +1,8 @@
 package com.erick.gerenciadorbiblioteca.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,6 +15,8 @@ public class Livro {
     private String titulo;
     @Column(nullable = false)
     private String autor;
+    @OneToMany(mappedBy = "livro")
+    private List<Emprestimo> emprestimos;
 
     public Livro(Long id, String titulo, String autor) {
         this.id = id;
@@ -50,12 +51,21 @@ public class Livro {
         return id;
     }
 
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
+    }
+
     @Override
     public String toString() {
         return "Livro{" +
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
+                ", emprestimos='" + emprestimos + '\'' +
                 '}';
     }
 

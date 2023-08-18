@@ -3,6 +3,24 @@ POST http://localhost:8080/api/v1/livros
 Content-Type: application/json
 
 {
+  "titulo": "Harry Potter e a Camara Secreta",
+  "autor": "J.K. Rowling"
+}
+
+###
+POST http://localhost:8080/api/v1/livros
+Content-Type: application/json
+
+{
+  "titulo": "Harry Potter e a Pedra Filosofal",
+  "autor": "J.K. Rowling"
+}
+
+###
+POST http://localhost:8080/api/v1/livros
+Content-Type: application/json
+
+{
   "titulo": "Harry Potter e as Relíquias da Morte parte 1",
   "autor": "J.K. Rowling"
 }
@@ -36,3 +54,5 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8080/api/v1/livros/2
 
+###
+GET http://localhost:8080/api/v1/usuarios

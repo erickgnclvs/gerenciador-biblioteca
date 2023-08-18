@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController()
+@RequestMapping("/api/v1")
 public class LivroController {
 
     private final LivroService livroService;
@@ -20,12 +21,21 @@ public class LivroController {
     }
 
     @GetMapping("/livros")
-    public List<Livro> getLivros() {
-        return livroService.getLivros();
+    public ResponseEntity<List<Livro>> getLivros() {
+        return new ResponseEntity<>(livroService.getLivros(), HttpStatus.OK);
     }
 
     @PostMapping("/livros")
-    public Livro adicionaLivro(@RequestBody Livro livro) {
-        return livroService.adicionaLivro(livro);
+    public ResponseEntity<Livro> adicionaLivro(@RequestBody Livro livro) {
+        return new ResponseEntity<>(livro, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/livros/{id}")
+    public ResponseEntity<Livro> getLivro(@PathVariable Long id) {
+        if (livroService.getLivro(id).isPresent()) {
+            return new ResponseEntity<>(livroService.getLivro(id).get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

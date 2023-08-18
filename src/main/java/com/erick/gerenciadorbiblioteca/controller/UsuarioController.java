@@ -37,10 +37,9 @@ public class UsuarioController {
 
     @PostMapping("/usuarios")
     public ResponseEntity<Usuario> adicionaUsuario(@RequestBody Usuario usuario) {
-        Usuario usuarioSalvo = usuarioService.salvaUsuario(usuario);
-        if (usuarioSalvo != null) {
-            return new ResponseEntity<>(usuarioSalvo, HttpStatus.CREATED);
-        } else {
+        try {
+            return new ResponseEntity<>(usuarioService.salvaUsuario(usuario), HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }

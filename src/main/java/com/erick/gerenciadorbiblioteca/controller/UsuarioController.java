@@ -70,4 +70,15 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/usuarios/{id}")
+    public ResponseEntity<Usuario> removeUsuario(@PathVariable Long id) {
+        Optional<Usuario> usuario = usuarioService.getUsuario(id);
+        if (usuario.isPresent()) {
+            usuarioService.removeUsuario(usuario.get());
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

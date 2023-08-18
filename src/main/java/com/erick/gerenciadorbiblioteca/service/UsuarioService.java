@@ -34,4 +34,8 @@ public class UsuarioService {
     public Optional<Usuario> getUsuario(Long id) {
         return usuarioRepository.findById(id);
     }
+
+    public void removeUsuario(Usuario usuario) {
+        usuarioRepository.delete(usuario);
+    }
 }

@@ -1,11 +1,15 @@
 package com.erick.gerenciadorbiblioteca.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Livro {
 
     @Id
@@ -16,6 +20,7 @@ public class Livro {
     @Column(nullable = false)
     private String autor;
     @OneToMany(mappedBy = "livro")
+//    @JsonManagedReference
     private List<Emprestimo> emprestimos;
 
     public Livro(Long id, String titulo, String autor) {
@@ -25,6 +30,10 @@ public class Livro {
     }
 
     public Livro() {
+    }
+
+    public Livro(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -65,7 +74,7 @@ public class Livro {
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
-                ", emprestimos='" + emprestimos + '\'' +
+                ", emprestimos='" + emprestimos.size() + '\'' +
                 '}';
     }
 

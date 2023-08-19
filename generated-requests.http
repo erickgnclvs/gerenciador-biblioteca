@@ -38,7 +38,7 @@ GET http://localhost:8080/api/v1/livros
 <> 2023-08-17T230218.200.json
 
 ###
-GET http://localhost:8080/api/v1/livros/1
+GET http://localhost:8080/api/v1/livros
 
 ###
 PUT http://localhost:8080/api/v1/livros/3
@@ -85,3 +85,15 @@ Content-Type: application/json
   "telefone": "54991748273",
   "email": "erick@mail"
 }
+
+###
+POST http://localhost:8080/api/v1/emprestimos
+Content-Type: application/json
+
+{
+  "usuario": 1023,
+  "livro": 3
+}
+
+###
+GET http://localhost:8080/api/v1/emprestimos

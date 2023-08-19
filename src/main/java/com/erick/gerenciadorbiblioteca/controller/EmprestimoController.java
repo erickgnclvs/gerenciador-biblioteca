@@ -1,25 +1,33 @@
 package com.erick.gerenciadorbiblioteca.controller;
 
 import com.erick.gerenciadorbiblioteca.model.Emprestimo;
+import com.erick.gerenciadorbiblioteca.model.Livro;
+import com.erick.gerenciadorbiblioteca.model.Usuario;
 import com.erick.gerenciadorbiblioteca.service.EmprestimoService;
+import com.erick.gerenciadorbiblioteca.service.LivroService;
+import com.erick.gerenciadorbiblioteca.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1")
 public class EmprestimoController {
 
     private final EmprestimoService emprestimoService;
+    private final LivroService livroService;
+    private final UsuarioService usuarioService;
 
     @Autowired
-    public EmprestimoController(EmprestimoService emprestimoService) {
+    public EmprestimoController(EmprestimoService emprestimoService, LivroService livroService, UsuarioService usuarioService) {
         this.emprestimoService = emprestimoService;
+        this.livroService = livroService;
+        this.usuarioService = usuarioService;
     }
 
     @GetMapping("/emprestimos")
@@ -33,6 +41,24 @@ public class EmprestimoController {
             }
         } else {
             return new ResponseEntity<>(emprestimoService.getEmprestimos(), HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/emprestimos")
+    public ResponseEntity<Emprestimo> adicionaEmprestimo(@RequestBody Emprestimo emprestimo) {
+        Optional<Livro> livro = livroService.getLivro(emprestimo.getLivro());
+        Optional<Usuario> usuario = usuarioService.getUsuario(emprestimo.getUsuario());
+        if (livro.isPresent() && usuario.isPresent()) {
+            emprestimo.setLivro(livro.get());
+            emprestimo.setUsuario(usuario.get());
+            emprestimo.setDataEmprestimo(LocalDate.now());
+            try {
+                return new ResponseEntity<>(emprestimoService.adicionaEmprestimo(emprestimo), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

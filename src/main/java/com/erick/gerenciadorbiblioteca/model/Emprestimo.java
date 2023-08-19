@@ -1,11 +1,15 @@
 package com.erick.gerenciadorbiblioteca.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Emprestimo {
     @Id
     @GeneratedValue
@@ -13,10 +17,14 @@ public class Emprestimo {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "usuario_id")
+//    @JsonBackReference
+    @JsonIdentityReference(alwaysAsId = true)
     private Usuario usuario;
     @ManyToOne
     @NotNull
     @JoinColumn(name = "livro_id")
+    @JsonIdentityReference(alwaysAsId = true)
+//    @JsonBackReference
     private Livro livro;
     @NotNull
     private LocalDate dataEmprestimo;
@@ -44,16 +52,16 @@ public class Emprestimo {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Long getUsuario() {
+        return usuario.getId();
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
-    public Livro getLivro() {
-        return livro;
+    public Long getLivro() {
+        return livro.getId();
     }
 
     public void setLivro(Livro livro) {

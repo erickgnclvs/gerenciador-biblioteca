@@ -1,6 +1,8 @@
 package com.erick.gerenciadorbiblioteca.service;
 
 import com.erick.gerenciadorbiblioteca.model.Emprestimo;
+import com.erick.gerenciadorbiblioteca.model.Livro;
+import com.erick.gerenciadorbiblioteca.model.Usuario;
 import com.erick.gerenciadorbiblioteca.repository.EmprestimoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,14 @@ import java.util.Optional;
 public class EmprestimoService {
 
     private final EmprestimoRepository emprestimoRepository;
+    private final LivroService livroService;
+    private final UsuarioService usuarioService;
 
     @Autowired
-    public EmprestimoService(EmprestimoRepository emprestimoRepository) {
+    public EmprestimoService(EmprestimoRepository emprestimoRepository, LivroService livroService, UsuarioService usuarioService) {
         this.emprestimoRepository = emprestimoRepository;
+        this.livroService = livroService;
+        this.usuarioService = usuarioService;
     }
 
     public Optional<List<Emprestimo>> buscaEmprestimos(String pesquisa) {
@@ -24,5 +30,15 @@ public class EmprestimoService {
 
     public List<Emprestimo> getEmprestimos() {
         return emprestimoRepository.findAll();
+    }
+
+    public Emprestimo adicionaEmprestimo(Emprestimo emprestimo) {
+        Livro livro = livroService.getLivro(emprestimo.getLivro()).get();
+        Usuario usuario = usuarioService.getUsuario(emprestimo.getUsuario()).get();
+        boolean emprestimoExiste = emprestimoRepository.existsByUsuarioAndLivroAndDataDevolucaoIsNull(usuario, livro);
+        if (emprestimoExiste) {
+            throw new RuntimeException("Empréstimo já existe");
+        }
+        return emprestimoRepository.save(emprestimo);
     }
 }

@@ -6,7 +6,7 @@ Este é um sistema de gerenciamento de biblioteca construído com Spring Boot.
 
 - Gerenciamento de usuários: adicionar, editar e remover usuários.
 - Gerenciamento de livros: adicionar, editar e remover livros.
-- Empréstimo de livros: os usuários podem emprestar até dois livros por vez.
+- Empréstimo de livros: os usuários podem pegar até dois livros emprestados por vez.
 - Devolução de livros: os usuários podem devolver os livros emprestados.
 
 ## Entidades

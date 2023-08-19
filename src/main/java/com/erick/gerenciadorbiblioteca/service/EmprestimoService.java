@@ -36,9 +36,11 @@ public class EmprestimoService {
         Livro livro = livroService.getLivro(emprestimo.getLivro()).get();
         Usuario usuario = usuarioService.getUsuario(emprestimo.getUsuario()).get();
         boolean emprestimoExiste = emprestimoRepository.existsByUsuarioAndLivroAndDataDevolucaoIsNull(usuario, livro);
-        if (emprestimoExiste) {
+        boolean livroDisponivel = livroService.estaDisponivel(livro);
+        if (emprestimoExiste || !livroDisponivel) {
             throw new RuntimeException("Empréstimo já existe");
+        } else {
+            return emprestimoRepository.save(emprestimo);
         }
-        return emprestimoRepository.save(emprestimo);
     }
 }

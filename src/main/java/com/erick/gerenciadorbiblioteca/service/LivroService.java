@@ -1,5 +1,6 @@
 package com.erick.gerenciadorbiblioteca.service;
 
+import com.erick.gerenciadorbiblioteca.model.Emprestimo;
 import com.erick.gerenciadorbiblioteca.model.Livro;
 import com.erick.gerenciadorbiblioteca.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,17 @@ public class LivroService {
 
     public Optional<List<Livro>> buscaLivros(String pesquisa) {
         return livroRepository.findAllByAutorContainingIgnoreCaseOrTituloContainingIgnoreCase(pesquisa, pesquisa);
+    }
+
+    public boolean estaDisponivel(Livro livro) {
+        boolean estaDisponivel = true;
+        if (!livro.getEmprestimos().isEmpty()) {
+            for (Emprestimo emprestimo : livro.getEmprestimos()) {
+                if (emprestimo.getDataDevolucao() == null) {
+                    estaDisponivel = false;
+                }
+            }
+        }
+        return estaDisponivel;
     }
 }

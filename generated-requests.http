@@ -91,8 +91,8 @@ POST http://localhost:8080/api/v1/emprestimos
 Content-Type: application/json
 
 {
-  "usuario": 1023,
-  "livro": 3
+  "usuario": 103,
+  "livro": 4
 }
 
 ###

@@ -26,7 +26,7 @@ A entidade `Usuario` representa um usuário do sistema. Possui os seguintes camp
 A entidade `Livro` representa um livro no sistema. Possui os seguintes campos:
 - `id`: identificador único do livro.
 - `autor`: autor do livro.
-- `title`: título do livro.
+- `titulo`: título do livro.
 
 ### Empréstimo
 

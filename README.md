@@ -49,6 +49,8 @@ O sistema possui as seguintes chamadas de serviço disponíveis:
 - `PUT /livros/{id}`: modifica livro.
 - `DELETE /livros/{id}`: remove livro.
 - `GET /livros/{id}/emprestimos`: busca empréstimos do livro.
+- `GET /livros/{id}/emprestimos/ativo`: busca empréstimo ativos do livro.
+- `GET /livros/{id}/emprestimos/devolvidos`: busca empréstimos devolvidos do livro.
 
 ### Usuários
 - `GET /usuarios`: busca todos os usuários.

@@ -48,6 +48,7 @@ O sistema possui as seguintes chamadas de serviço disponíveis:
 - `POST /livros`: adiciona livro.
 - `PUT /livros/{id}`: modifica livro.
 - `DELETE /livros/{id}`: remove livro.
+- `GET /livros/{id}/emprestimos`: busca empréstimos do livro.
 
 ### Usuários
 - `GET /usuarios`: busca todos os usuários.
@@ -56,6 +57,9 @@ O sistema possui as seguintes chamadas de serviço disponíveis:
 - `POST /usuarios`: adiciona usuário.
 - `PUT /usuarios/{id}`: modifica usuário.
 - `DELETE /usuarios/{id}`: remove usuário.
+- `GET /usuarios/{id}/emprestimos`: busca empréstimos do usuário.
+- `GET /usuarios/{id}/emprestimos/ativos`: busca empréstimos ativos do usuário.
+- `GET /usuarios/{id}/emprestimos/devolvidos`: busca empréstimos devolvidos do usuário.
 
 ### Empréstimos
 - `GET /emprestimos`: busca todos os empréstimos.

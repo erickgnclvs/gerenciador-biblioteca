@@ -21,6 +21,15 @@ POST http://localhost:8080/api/v1/livros
 Content-Type: application/json
 
 {
+  "titulo": "As Crônicas de Nárnia",
+  "autor": "C.S. Lewis"
+}
+
+###
+POST http://localhost:8080/api/v1/livros
+Content-Type: application/json
+
+{
   "titulo": "Harry Potter e as Relíquias da Morte parte 1",
   "autor": "J.K. Rowling"
 }
@@ -52,7 +61,7 @@ Content-Type: application/json
 <> 2023-08-18T113702.200.json
 
 ###
-DELETE http://localhost:8080/api/v1/livros/2
+DELETE http://localhost:8080/api/v1/livros/54
 
 ###
 DELETE http://localhost:8080/api/v1/usuarios/2
@@ -92,7 +101,7 @@ Content-Type: application/json
 
 {
   "usuario": 103,
-  "livro": 5
+  "livro": 54
 }
 
 ###

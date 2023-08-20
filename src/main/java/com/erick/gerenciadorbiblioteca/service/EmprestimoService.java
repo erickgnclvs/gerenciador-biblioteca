@@ -42,6 +42,7 @@ public class EmprestimoService {
         if (emprestimoExiste || !livroDisponivel || emprestimosAtivos >= 2) {
             throw new RuntimeException("Empréstimo já existe");
         } else {
+
             return emprestimoRepository.save(emprestimo);
         }
     }

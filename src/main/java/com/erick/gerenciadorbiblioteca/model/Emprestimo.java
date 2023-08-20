@@ -17,14 +17,12 @@ public class Emprestimo {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "usuario_id")
-//    @JsonBackReference
     @JsonIdentityReference(alwaysAsId = true)
     private Usuario usuario;
     @ManyToOne
     @NotNull
     @JoinColumn(name = "livro_id")
     @JsonIdentityReference(alwaysAsId = true)
-//    @JsonBackReference
     private Livro livro;
     @NotNull
     private LocalDate dataEmprestimo;

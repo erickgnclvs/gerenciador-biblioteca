@@ -1,8 +1,5 @@
 package com.erick.gerenciadorbiblioteca.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 
@@ -10,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Usuario {
 
     @Id
@@ -24,7 +20,6 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String email;
     @OneToMany(mappedBy = "usuario")
-//    @JsonManagedReference
     private List<Emprestimo> emprestimos;
 
     public Usuario() {

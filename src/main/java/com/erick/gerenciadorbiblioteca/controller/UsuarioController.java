@@ -1,6 +1,8 @@
 package com.erick.gerenciadorbiblioteca.controller;
 
+aimport com.erick.gerenciadorbiblioteca.model.Emprestimo;
 import com.erick.gerenciadorbiblioteca.model.Usuario;
+import com.erick.gerenciadorbiblioteca.service.EmprestimoService;
 import com.erick.gerenciadorbiblioteca.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +16,12 @@ import java.util.Optional;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final EmprestimoService emprestimoService;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService) {
+    public UsuarioController(UsuarioService usuarioService, EmprestimoService emprestimoService) {
         this.usuarioService = usuarioService;
+        this.emprestimoService = emprestimoService;
     }
 
     @GetMapping("/usuarios")
@@ -75,6 +79,36 @@ public class UsuarioController {
         if (usuario.isPresent()) {
             usuarioService.removeUsuario(usuario.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/usuarios/{id}/emprestimos")
+    public ResponseEntity<List<Emprestimo>> getEmprestimos(@PathVariable Long id) {
+        Optional<Usuario> usuario = usuarioService.getUsuario(id);
+        if (usuario.isPresent()) {
+            return new ResponseEntity<>(emprestimoService.getEmprestimosUsuario(usuario.get()), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/usuarios/{id}/emprestimos/ativos")
+    public ResponseEntity<?> getEmprestimosAtivos(@PathVariable Long id) {
+        Optional<Usuario> usuario = usuarioService.getUsuario(id);
+        if (usuario.isPresent()) {
+            return new ResponseEntity<>(emprestimoService.getEmprestimosAtivosUsuario(usuario.get()), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/usuarios/{id}/emprestimos/devolvidos")
+    public ResponseEntity<List<Emprestimo>> getEmprestimosDevolvidos(@PathVariable Long id) {
+        Optional<Usuario> usuario = usuarioService.getUsuario(id);
+        if (usuario.isPresent()) {
+            return new ResponseEntity<>(emprestimoService.getEmprestimosDevolvidosUsuario(usuario.get()), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

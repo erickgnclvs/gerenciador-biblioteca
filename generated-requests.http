@@ -112,3 +112,15 @@ PATCH http://localhost:8080/api/v1/emprestimos/403
 
 ###
 GET http://localhost:8080/api/v1/livros/53/emprestimos/ativo
+
+###
+GET http://localhost:8080/api/v1/livros/53/emprestimos/devolvidos
+
+###
+GET http://localhost:8080/api/v1/usuarios/103/emprestimos
+
+###
+GET http://localhost:8080/api/v1/usuarios/103/emprestimos/ativos
+
+###
+GET http://localhost:8080/api/v1/usuarios/103/emprestimos/devolvidos

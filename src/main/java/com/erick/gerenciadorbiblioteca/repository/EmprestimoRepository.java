@@ -19,4 +19,10 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     List<Emprestimo> findByLivro(Livro livro);
 
     Optional<Emprestimo> findByLivroAndDataDevolucaoIsNull(Livro livro);
+
+    List<Emprestimo> findByUsuarioAndDataDevolucaoIsNull(Usuario usuario);
+
+    List<Emprestimo> findByUsuarioAndDataDevolucaoIsNotNull(Usuario usuario);
+
+    List<Emprestimo> findByUsuario(Usuario usuario);
 }

@@ -116,4 +116,16 @@ public class EmprestimoService {
         }
         return devolvidos;
     }
+
+    public List<Emprestimo> getEmprestimosAtivosUsuario(Usuario usuario) {
+        return emprestimoRepository.findByUsuarioAndDataDevolucaoIsNull(usuario);
+    }
+
+    public List<Emprestimo> getEmprestimosDevolvidosUsuario(Usuario usuario) {
+        return emprestimoRepository.findByUsuarioAndDataDevolucaoIsNotNull(usuario);
+    }
+
+    public List<Emprestimo> getEmprestimosUsuario(Usuario usuario) {
+        return emprestimoRepository.findByUsuario(usuario);
+    }
 }

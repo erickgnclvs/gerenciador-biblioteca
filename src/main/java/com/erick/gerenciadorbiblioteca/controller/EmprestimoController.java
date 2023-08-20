@@ -59,6 +59,11 @@ public class EmprestimoController {
         return new ResponseEntity<>(emprestimoService.getEmprestimosDevolvidos(), HttpStatus.OK);
     }
 
+    @GetMapping("/emprestimos/ativos")
+    public ResponseEntity<List<Emprestimo>> getEmprestimosAtivos() {
+        return new ResponseEntity<>(emprestimoService.getEmprestimosAtivos(), HttpStatus.OK);
+    }
+
     @PostMapping("/emprestimos")
     public ResponseEntity<Emprestimo> adicionaEmprestimo(@RequestBody Emprestimo emprestimo) {
         Optional<Livro> livro = livroService.getLivro(emprestimo.getLivro());

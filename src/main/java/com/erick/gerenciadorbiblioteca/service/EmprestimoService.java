@@ -63,14 +63,25 @@ public class EmprestimoService {
         List<Emprestimo> devolvidos = new ArrayList<>();
         List<Emprestimo> emprestimos = emprestimoRepository.findAll();
         if (!emprestimos.isEmpty()) {
-            for (Emprestimo emprestimo : emprestimoRepository.findAll()) {
+            for (Emprestimo emprestimo : emprestimos) {
                 if (emprestimo.getDataDevolucao() != null) {
                     devolvidos.add(emprestimo);
                 }
             }
-            return devolvidos;
-        } else {
-            return emprestimos;
         }
+        return devolvidos;
+    }
+
+    public List<Emprestimo> getEmprestimosAtivos() {
+        List<Emprestimo> ativos = new ArrayList<>();
+        List<Emprestimo> emprestimos = emprestimoRepository.findAll();
+        if (!emprestimos.isEmpty()) {
+            for (Emprestimo emprestimo : emprestimos) {
+                if (emprestimo.getDataDevolucao() == null) {
+                    ativos.add(emprestimo);
+                }
+            }
+        }
+        return ativos;
     }
 }

@@ -93,4 +93,13 @@ public class EmprestimoService {
         }
         return emprestimos;
     }
+
+    public Optional<Emprestimo> getEmprestimoAtivoLivro(Long id) {
+        Optional<Livro> livro = livroService.getLivro(id);
+        if (livro.isPresent()) {
+            return emprestimoRepository.findByLivroAndDataDevolucaoIsNull(livro.get());
+        } else {
+            throw new RuntimeException();
+        }
+    }
 }

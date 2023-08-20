@@ -1,6 +1,7 @@
 package com.erick.gerenciadorbiblioteca.controller;
 
 import com.erick.gerenciadorbiblioteca.model.Emprestimo;
+import com.erick.gerenciadorbiblioteca.model.EmptyJson;
 import com.erick.gerenciadorbiblioteca.model.Livro;
 import com.erick.gerenciadorbiblioteca.service.EmprestimoService;
 import com.erick.gerenciadorbiblioteca.service.LivroService;
@@ -92,4 +93,20 @@ public class LivroController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/livros/{id}/emprestimos/ativo")
+    public ResponseEntity<?> getEmprestimoAtivo(@PathVariable Long id) {
+        if (livroService.livroExiste(id)) {
+            Optional<Emprestimo> emprestimoAtivo = emprestimoService.getEmprestimoAtivoLivro(id);
+            if (emprestimoAtivo.isPresent()) {
+                return new ResponseEntity<>(emprestimoAtivo.get(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(new EmptyJson(), HttpStatus.OK);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //@GetMapping("/livros/{id}/emprestimos/devolvidos")
 }

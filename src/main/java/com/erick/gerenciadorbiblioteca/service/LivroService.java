@@ -39,6 +39,7 @@ public class LivroService {
         return livroRepository.findAllByAutorContainingIgnoreCaseOrTituloContainingIgnoreCase(pesquisa, pesquisa);
     }
 
+    // Testar outra lógica, tem como ser mais simples
     public boolean estaDisponivel(Livro livro) {
         boolean estaDisponivel = true;
         if (!livro.getEmprestimos().isEmpty()) {

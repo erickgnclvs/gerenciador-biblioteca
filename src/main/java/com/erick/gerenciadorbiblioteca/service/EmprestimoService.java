@@ -33,16 +33,15 @@ public class EmprestimoService {
     }
 
     public Emprestimo adicionaEmprestimo(Emprestimo emprestimo) {
-
         Livro livro = livroService.getLivro(emprestimo.getLivro()).get();
         Usuario usuario = usuarioService.getUsuario(emprestimo.getUsuario()).get();
         boolean emprestimoExiste = emprestimoRepository.existsByUsuarioAndLivroAndDataDevolucaoIsNull(usuario, livro);
-        boolean livroDisponivel = livroService.estaDisponivel(livro);
+        boolean livroDisponivel = livro.isDisponivel();
         long emprestimosAtivos = emprestimoRepository.countByUsuarioAndDataDevolucaoIsNull(usuario);
         if (emprestimoExiste || !livroDisponivel || emprestimosAtivos >= 2) {
-            throw new RuntimeException("Empréstimo já existe");
+            throw new RuntimeException();
         } else {
-
+            livro.setDisponivel(false);
             return emprestimoRepository.save(emprestimo);
         }
     }

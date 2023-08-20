@@ -62,7 +62,7 @@ O sistema possui as seguintes chamadas de serviço disponíveis:
 - `GET /emprestimos?pesquisa=`: busca empréstimos por usuário ou livro.
 - `GET /emprestimos/{id}`: busca empréstimo por id.
 - `GET /emprestimos/devolvidos`: busca empréstimos já devolvidos.
-- `GET /emprestimos/nao-devolvidos`: busca empréstimos não devolvidos.
+- `GET /emprestimos/ativos`: busca empréstimos não devolvidos.
 - `POST /emprestimos`: adiciona empréstimo.
 - `PATCH /emprestimos/{id}`: devolve livro.
 

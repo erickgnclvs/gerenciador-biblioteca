@@ -54,6 +54,10 @@ public class EmprestimoController {
         }
     }
 
+    @GetMapping("/emprestimos/devolvidos")
+    public ResponseEntity<List<Emprestimo>> getEmprestimosDevolvidos() {
+        return new ResponseEntity<>(emprestimoService.getEmprestimosDevolvidos(), HttpStatus.OK);
+    }
 
     @PostMapping("/emprestimos")
     public ResponseEntity<Emprestimo> adicionaEmprestimo(@RequestBody Emprestimo emprestimo) {

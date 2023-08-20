@@ -102,4 +102,18 @@ public class EmprestimoService {
             throw new RuntimeException();
         }
     }
+
+    public List<Emprestimo> getEmprestimosDevolvidosLivro(Long id) {
+        Optional<Livro> livro = livroService.getLivro(id);
+        List<Emprestimo> devolvidos = new ArrayList<>();
+        if (livro.isPresent()) {
+            List<Emprestimo> emprestimos = emprestimoRepository.findByLivro(livro.get());
+            for (Emprestimo emprestimo : emprestimos) {
+                if (emprestimo.getDataDevolucao() != null) {
+                    devolvidos.add(emprestimo);
+                }
+            }
+        }
+        return devolvidos;
+    }
 }

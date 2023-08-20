@@ -108,5 +108,12 @@ public class LivroController {
         }
     }
 
-    //@GetMapping("/livros/{id}/emprestimos/devolvidos")
+    @GetMapping("/livros/{id}/emprestimos/devolvidos")
+    public ResponseEntity<List<Emprestimo>> getEmprestimosDevolvidos(@PathVariable Long id) {
+        if (livroService.livroExiste(id)) {
+            return new ResponseEntity<>(emprestimoService.getEmprestimosDevolvidosLivro(id), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

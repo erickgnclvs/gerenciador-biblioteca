@@ -7,6 +7,7 @@ import com.erick.gerenciadorbiblioteca.repository.EmprestimoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +45,15 @@ public class EmprestimoService {
             livro.setDisponivel(false);
             return emprestimoRepository.save(emprestimo);
         }
+    }
+
+    public Optional<Emprestimo> getEmprestimo(Long id) {
+        return emprestimoRepository.findById(id);
+    }
+
+    public Emprestimo devolveLivro(Emprestimo emprestimo) {
+        emprestimo.setDataDevolucao(LocalDate.now());
+        livroService.getLivro(emprestimo.getLivro()).orElseThrow().setDisponivel(true);
+        return emprestimoRepository.save(emprestimo);
     }
 }

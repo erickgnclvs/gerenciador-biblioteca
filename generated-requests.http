@@ -101,8 +101,11 @@ Content-Type: application/json
 
 {
   "usuario": 103,
-  "livro": 52
+  "livro": 55
 }
 
 ###
 GET http://localhost:8080/api/v1/emprestimos
+
+###
+PATCH http://localhost:8080/api/v1/emprestimos/403

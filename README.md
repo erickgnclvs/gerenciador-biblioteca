@@ -42,35 +42,35 @@ A entidade `Empréstimo` representa um empréstimo de livro. Possui os seguintes
 O sistema possui as seguintes chamadas de serviço disponíveis:
 
 ### Livros
-- `GET /livros`: busca todos os livros.
-- `GET /livros?pesquisa=`: busca livros por título ou autor.
-- `GET /livros/{id}`: busca livro por id.
-- `POST /livros`: adiciona livro.
-- `PUT /livros/{id}`: modifica livro.
-- `DELETE /livros/{id}`: remove livro.
-- `GET /livros/{id}/emprestimos`: busca empréstimos do livro.
-- `GET /livros/{id}/emprestimos/ativo`: busca empréstimo ativo do livro.
-- `GET /livros/{id}/emprestimos/devolvidos`: busca empréstimos devolvidos do livro.
+- `GET /api/v1/livros`: busca todos os livros.
+- `GET /api/v1/livros?pesquisa=`: busca livros por título ou autor.
+- `GET /api/v1/livros/{id}`: busca livro por id.
+- `POST /api/v1/livros`: adiciona livro.
+- `PUT /api/v1/livros/{id}`: modifica livro.
+- `DELETE /api/v1/livros/{id}`: remove livro.
+- `GET /api/v1/livros/{id}/emprestimos`: busca empréstimos do livro.
+- `GET /api/v1/livros/{id}/emprestimos/ativo`: busca empréstimo ativo do livro.
+- `GET /api/v1/livros/{id}/emprestimos/devolvidos`: busca empréstimos devolvidos do livro.
 
 ### Usuários
-- `GET /usuarios`: busca todos os usuários.
-- `GET /usuarios?pesquisa=`: busca usuários por nome ou email.
-- `GET /usuarios/{id}`: busca usuário por id.
-- `POST /usuarios`: adiciona usuário.
-- `PUT /usuarios/{id}`: modifica usuário.
-- `DELETE /usuarios/{id}`: remove usuário.
-- `GET /usuarios/{id}/emprestimos`: busca empréstimos do usuário.
-- `GET /usuarios/{id}/emprestimos/ativos`: busca empréstimos ativos do usuário.
-- `GET /usuarios/{id}/emprestimos/devolvidos`: busca empréstimos devolvidos do usuário.
+- `GET /api/v1/usuarios`: busca todos os usuários.
+- `GET /api/v1/usuarios?pesquisa=`: busca usuários por nome ou email.
+- `GET /api/v1/usuarios/{id}`: busca usuário por id.
+- `POST /api/v1/usuarios`: adiciona usuário.
+- `PUT /api/v1/usuarios/{id}`: modifica usuário.
+- `DELETE /api/v1/usuarios/{id}`: remove usuário.
+- `GET /api/v1/usuarios/{id}/emprestimos`: busca empréstimos do usuário.
+- `GET /api/v1/usuarios/{id}/emprestimos/ativos`: busca empréstimos ativos do usuário.
+- `GET /api/v1/usuarios/{id}/emprestimos/devolvidos`: busca empréstimos devolvidos do usuário.
 
 ### Empréstimos
-- `GET /emprestimos`: busca todos os empréstimos.
-- `GET /emprestimos?pesquisa=`: busca empréstimos por usuário ou livro.
-- `GET /emprestimos/{id}`: busca empréstimo por id.
-- `GET /emprestimos/devolvidos`: busca empréstimos já devolvidos.
-- `GET /emprestimos/ativos`: busca empréstimos não devolvidos.
-- `POST /emprestimos`: adiciona empréstimo.
-- `PATCH /emprestimos/{id}`: devolve livro.
+- `GET /api/v1/emprestimos`: busca todos os empréstimos.
+- `GET /api/v1/emprestimos?pesquisa=`: busca empréstimos por usuário ou livro.
+- `GET /api/v1/emprestimos/{id}`: busca empréstimo por id.
+- `GET /api/v1/emprestimos/devolvidos`: busca empréstimos já devolvidos.
+- `GET /api/v1/emprestimos/ativos`: busca empréstimos não devolvidos.
+- `POST /api/v1/emprestimos`: adiciona empréstimo.
+- `PATCH /api/v1/emprestimos/{id}`: devolve livro.
 
 ## Guia de Execução
 

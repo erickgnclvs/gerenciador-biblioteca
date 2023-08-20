@@ -111,6 +111,7 @@ Realize testes através dos end-points em http://localhost:8080/api/v1.
 - Maven 3.9.4
 - Java Development Kit 17.0.8
 - MySQL Community Server 8.0.33
+- Postman Agent 0.4.15
 
 <br><br>
 

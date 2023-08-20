@@ -102,7 +102,9 @@ Para executar o projeto, use o seguinte comando na pasta raiz do projeto:
 mvn spring-boot:run
 ```
 
-Realize testes através dos end-points em http://localhost:8080/api/v1.
+### Testes
+
+Importe o arquivo `biblioteca.postman_collection.json` como uma collection no Postman e realize testes através dos end-points em http://localhost:8080/api/v1, modificando os parâmetros necessários para testar todos os casos.
 
 ## Tecnologias utilizadas
 

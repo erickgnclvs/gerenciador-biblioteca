@@ -49,6 +49,7 @@ public class LivroService {
                 }
             }
         }
+
         return estaDisponivel;
     }
 

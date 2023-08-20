@@ -86,7 +86,11 @@ public class EmprestimoController {
     public ResponseEntity<Emprestimo> devolveLivro(@PathVariable Long id) {
         Optional<Emprestimo> emprestimo = emprestimoService.getEmprestimo(id);
         if (emprestimo.isPresent()) {
-            return new ResponseEntity<>(emprestimoService.devolveLivro(emprestimo.get()), HttpStatus.OK);
+            if (emprestimo.get().getDataDevolucao() == null) {
+                return new ResponseEntity<>(emprestimoService.devolveLivro(emprestimo.get()), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

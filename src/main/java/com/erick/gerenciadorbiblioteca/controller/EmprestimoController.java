@@ -44,6 +44,17 @@ public class EmprestimoController {
         }
     }
 
+    @GetMapping("/emprestimos/{id}")
+    public ResponseEntity<Emprestimo> getEmprestimo(@PathVariable Long id) {
+        Optional<Emprestimo> emprestimo = emprestimoService.getEmprestimo(id);
+        if (emprestimo.isPresent()) {
+            return new ResponseEntity<>(emprestimo.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
     @PostMapping("/emprestimos")
     public ResponseEntity<Emprestimo> adicionaEmprestimo(@RequestBody Emprestimo emprestimo) {
         Optional<Livro> livro = livroService.getLivro(emprestimo.getLivro());

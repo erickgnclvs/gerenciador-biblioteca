@@ -1,11 +1,14 @@
 package com.erick.gerenciadorbiblioteca.controller;
 
+import com.erick.gerenciadorbiblioteca.model.Emprestimo;
 import com.erick.gerenciadorbiblioteca.model.Livro;
+import com.erick.gerenciadorbiblioteca.service.EmprestimoService;
 import com.erick.gerenciadorbiblioteca.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,10 +17,12 @@ import java.util.Optional;
 public class LivroController {
 
     private final LivroService livroService;
+    private final EmprestimoService emprestimoService;
 
     @Autowired
-    public LivroController(LivroService livroService) {
+    public LivroController(LivroService livroService, EmprestimoService emprestimoService) {
         this.livroService = livroService;
+        this.emprestimoService = emprestimoService;
     }
 
     @GetMapping("/livros")
@@ -74,6 +79,15 @@ public class LivroController {
         if (livro.isPresent()) {
             livroService.removeLivro(livro.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/livros/{id}/emprestimos")
+    public ResponseEntity<List<Emprestimo>> getEmprestimos(@PathVariable Long id) {
+        if (livroService.livroExiste(id)) {
+            return new ResponseEntity<>(emprestimoService.getEmprestimosPorLivro(id), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

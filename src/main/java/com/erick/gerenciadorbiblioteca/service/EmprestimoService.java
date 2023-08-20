@@ -84,4 +84,13 @@ public class EmprestimoService {
         }
         return ativos;
     }
+
+    public List<Emprestimo> getEmprestimosPorLivro(Long id) {
+        Optional<Livro> livro = livroService.getLivro(id);
+        List<Emprestimo> emprestimos = new ArrayList<>();
+        if (livro.isPresent()) {
+            emprestimos = emprestimoRepository.findByLivro(livro.get());
+        }
+        return emprestimos;
+    }
 }

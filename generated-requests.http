@@ -30,7 +30,7 @@ POST http://localhost:8080/api/v1/livros
 Content-Type: application/json
 
 {
-  "titulo": "Harry Potter e as Relíquias da Morte parte 1",
+  "titulo": "Harry Potter e as Relíquias da Morte parte 2",
   "autor": "J.K. Rowling"
 }
 

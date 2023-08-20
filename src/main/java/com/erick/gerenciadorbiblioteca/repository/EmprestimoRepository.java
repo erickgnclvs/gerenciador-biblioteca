@@ -15,4 +15,6 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     boolean existsByUsuarioAndLivroAndDataDevolucaoIsNull(Usuario usuario, Livro livro);
 
     long countByUsuarioAndDataDevolucaoIsNull(Usuario usuario);
+
+    List<Emprestimo> findByLivro(Livro livro);
 }

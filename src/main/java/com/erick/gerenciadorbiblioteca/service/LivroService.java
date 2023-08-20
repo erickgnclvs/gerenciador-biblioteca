@@ -51,4 +51,8 @@ public class LivroService {
         }
         return estaDisponivel;
     }
+
+    public boolean livroExiste(Long id) {
+        return livroRepository.findById(id).isPresent();
+    }
 }

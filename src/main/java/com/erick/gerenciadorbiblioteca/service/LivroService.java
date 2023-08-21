@@ -39,20 +39,6 @@ public class LivroService {
         return livroRepository.findAllByAutorContainingIgnoreCaseOrTituloContainingIgnoreCase(pesquisa, pesquisa);
     }
 
-    // Testar outra lógica, tem como ser mais simples
-    public boolean estaDisponivel(Livro livro) {
-        boolean estaDisponivel = true;
-        if (!livro.getEmprestimos().isEmpty()) {
-            for (Emprestimo emprestimo : livro.getEmprestimos()) {
-                if (emprestimo.getDataDevolucao() == null) {
-                    estaDisponivel = false;
-                }
-            }
-        }
-
-        return estaDisponivel;
-    }
-
     public boolean livroExiste(Long id) {
         return livroRepository.findById(id).isPresent();
     }

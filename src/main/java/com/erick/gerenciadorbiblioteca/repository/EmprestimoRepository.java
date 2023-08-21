@@ -10,6 +10,8 @@ import java.util.Optional;
 
 public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 
+    List<Emprestimo> findEmprestimosByDataDevolucaoIsNull();
+
     Optional<List<Emprestimo>> findByLivro_TituloContainsOrUsuario_nomeContains(String titulo, String usuario);
 
     boolean existsByUsuarioAndLivroAndDataDevolucaoIsNull(Usuario usuario, Livro livro);
@@ -25,4 +27,8 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     List<Emprestimo> findByUsuarioAndDataDevolucaoIsNotNull(Usuario usuario);
 
     List<Emprestimo> findByUsuario(Usuario usuario);
+
+    List<Emprestimo> findByLivroAndDataDevolucaoIsNotNull(Livro livro);
+
+    List<Emprestimo> findEmprestimosByDataDevolucaoIsNotNull();
 }

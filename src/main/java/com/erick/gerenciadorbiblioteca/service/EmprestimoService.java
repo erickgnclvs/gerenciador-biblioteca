@@ -4,12 +4,11 @@ import com.erick.gerenciadorbiblioteca.model.Emprestimo;
 import com.erick.gerenciadorbiblioteca.model.Livro;
 import com.erick.gerenciadorbiblioteca.model.Usuario;
 import com.erick.gerenciadorbiblioteca.repository.EmprestimoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,13 +35,17 @@ public class EmprestimoService {
     }
 
     public Emprestimo adicionaEmprestimo(Emprestimo emprestimo) {
-        Livro livro = livroService.getLivro(emprestimo.getLivro()).get();
-        Usuario usuario = usuarioService.getUsuario(emprestimo.getUsuario()).get();
+        Livro livro = livroService.getLivro(emprestimo.getLivro()).orElseThrow();
+        Usuario usuario = usuarioService.getUsuario(emprestimo.getUsuario()).orElseThrow();
         boolean emprestimoExiste = emprestimoRepository.existsByUsuarioAndLivroAndDataDevolucaoIsNull(usuario, livro);
         boolean livroDisponivel = livro.isDisponivel();
         long emprestimosAtivos = emprestimoRepository.countByUsuarioAndDataDevolucaoIsNull(usuario);
-        if (emprestimoExiste || !livroDisponivel || emprestimosAtivos >= 2) {
-            throw new RuntimeException();
+        if (emprestimoExiste) {
+            throw new IllegalArgumentException("Empréstimo já existe.");
+        } else if (!livroDisponivel) {
+            throw new IllegalStateException("Livro não disponível.");
+        } else if (emprestimosAtivos >= 2) {
+            throw new IllegalStateException("Usuário já possui dois empréstimos ativos.");
         } else {
             livro.setDisponivel(false);
             return emprestimoRepository.save(emprestimo);
@@ -60,38 +63,20 @@ public class EmprestimoService {
     }
 
     public List<Emprestimo> getEmprestimosDevolvidos() {
-        List<Emprestimo> devolvidos = new ArrayList<>();
-        List<Emprestimo> emprestimos = emprestimoRepository.findAll();
-        if (!emprestimos.isEmpty()) {
-            for (Emprestimo emprestimo : emprestimos) {
-                if (emprestimo.getDataDevolucao() != null) {
-                    devolvidos.add(emprestimo);
-                }
-            }
-        }
-        return devolvidos;
+        return emprestimoRepository.findEmprestimosByDataDevolucaoIsNotNull();
     }
 
     public List<Emprestimo> getEmprestimosAtivos() {
-        List<Emprestimo> ativos = new ArrayList<>();
-        List<Emprestimo> emprestimos = emprestimoRepository.findAll();
-        if (!emprestimos.isEmpty()) {
-            for (Emprestimo emprestimo : emprestimos) {
-                if (emprestimo.getDataDevolucao() == null) {
-                    ativos.add(emprestimo);
-                }
-            }
-        }
-        return ativos;
+        return emprestimoRepository.findEmprestimosByDataDevolucaoIsNull();
     }
 
     public List<Emprestimo> getEmprestimosPorLivro(Long id) {
         Optional<Livro> livro = livroService.getLivro(id);
-        List<Emprestimo> emprestimos = new ArrayList<>();
         if (livro.isPresent()) {
-            emprestimos = emprestimoRepository.findByLivro(livro.get());
+            return emprestimoRepository.findByLivro(livro.get());
+        } else {
+            throw new EntityNotFoundException("Livro não existe.");
         }
-        return emprestimos;
     }
 
     public Optional<Emprestimo> getEmprestimoAtivoLivro(Long id) {
@@ -99,22 +84,17 @@ public class EmprestimoService {
         if (livro.isPresent()) {
             return emprestimoRepository.findByLivroAndDataDevolucaoIsNull(livro.get());
         } else {
-            throw new RuntimeException();
+            throw new EntityNotFoundException("Livro não existe.");
         }
     }
 
     public List<Emprestimo> getEmprestimosDevolvidosLivro(Long id) {
         Optional<Livro> livro = livroService.getLivro(id);
-        List<Emprestimo> devolvidos = new ArrayList<>();
         if (livro.isPresent()) {
-            List<Emprestimo> emprestimos = emprestimoRepository.findByLivro(livro.get());
-            for (Emprestimo emprestimo : emprestimos) {
-                if (emprestimo.getDataDevolucao() != null) {
-                    devolvidos.add(emprestimo);
-                }
-            }
+            return emprestimoRepository.findByLivroAndDataDevolucaoIsNotNull(livro.get());
+        } else {
+            throw new EntityNotFoundException("Livro não existe.");
         }
-        return devolvidos;
     }
 
     public List<Emprestimo> getEmprestimosAtivosUsuario(Usuario usuario) {

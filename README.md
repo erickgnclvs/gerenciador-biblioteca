@@ -79,6 +79,7 @@ Este guia fornece instruções passo a passo para executar o projeto.
 ### Pré-requisitos
 
 Antes de começar, certifique-se de que o JDK e o Maven estão instalados e que as variáveis de ambiente estão corretamente definidas.
+<strong>A variável JAVA_HOME deverá estar apontando para o JDK versão 17.</strong>
 
 ### Configuração
 

@@ -83,12 +83,20 @@ Antes de começar, certifique-se de que o JDK e o Maven estão instalados e que 
 ### Configuração
 
 1. Clone o repositório `git clone https://github.com/erickgnclvs/gerenciador-biblioteca.git`.
-2. Abra o arquivo `application.properties` e configure-o para usar o MySQL ou o H2.
+2. Abra o arquivo `application.properties` e configure-o para usar o MySQL ou o H2. O padrão é H2.
 3. Se estiver usando o MySQL, configure o usuário e a senha do banco de dados e crie um banco de dados chamado `biblioteca`.
+
+### Testes automatizados
+
+Na pasta raiz do projeto, execute o seguinte comando para testar o projeto:
+
+```
+mvn test
+```
 
 ### Compilação
 
-Na pasta raiz do projeto, execute o seguinte comando para compilar o projeto:
+Execute o seguinte comando para compilar o projeto:
 
 ```
 mvn package
@@ -102,7 +110,7 @@ Para executar o projeto, use o seguinte comando na pasta raiz do projeto:
 mvn spring-boot:run
 ```
 
-### Testes
+### Testes manuais
 
 Importe o arquivo `biblioteca.postman_collection.json` como uma collection no Postman e realize testes através dos end-points em http://localhost:8080/api/v1, modificando os parâmetros necessários para testar todos os casos.
 

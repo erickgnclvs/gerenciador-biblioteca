@@ -76,6 +76,9 @@ O sistema possui as seguintes chamadas de serviço disponíveis:
 
 Este guia fornece instruções passo a passo para executar o projeto.
 
+### Deploy no Railway:
+
+
 ### Pré-requisitos
 
 Antes de começar, certifique-se de que o JDK e o Maven estão instalados e que as variáveis de ambiente estão corretamente definidas.
@@ -84,8 +87,19 @@ Antes de começar, certifique-se de que o JDK e o Maven estão instalados e que 
 ### Configuração
 
 1. Clone o repositório `git clone https://github.com/erickgnclvs/gerenciador-biblioteca.git`.
-2. Abra o arquivo `application.properties` e configure-o para usar o MySQL ou o H2. O padrão é H2.
-3. Se estiver usando o MySQL, configure o usuário e a senha do banco de dados e crie um banco de dados chamado `biblioteca`.
+2. Abra o arquivo `application.properties` e configure-o para usar o H2 descomentando as seguintes propriedades:
+```properties
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.url=jdbc:h2:mem:biblioteca
+```
+3. Se estiver usando o MySQL, ative o driver e configure o nome da database, usuário e senha nas propriedades:
+```properties
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+```
 
 ### Testes automatizados
 

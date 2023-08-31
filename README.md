@@ -72,11 +72,14 @@ O sistema possui as seguintes chamadas de serviço disponíveis:
 - `POST /api/v1/emprestimos`: adiciona empréstimo.
 - `PATCH /api/v1/emprestimos/{id}`: devolve livro.
 
-## Guia de Execução
+## Deploy no Railway:
+
+Acesse os endpoints **[aqui](http://gerenciador-biblioteca-production.up.railway.app/api/v1/)**. 
+
+
+## Guia de Execução local
 
 Este guia fornece instruções passo a passo para executar o projeto.
-
-### Deploy no Railway:
 
 
 ### Pré-requisitos

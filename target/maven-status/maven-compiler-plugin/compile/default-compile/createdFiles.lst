@@ -1,0 +1,10 @@
+com\erick\gerenciadorbiblioteca\controller\EmprestimoController.class
+com\erick\gerenciadorbiblioteca\controller\LivroController.class
+com\erick\gerenciadorbiblioteca\service\EmprestimoService.class
+com\erick\gerenciadorbiblioteca\model\EmptyJson.class
+com\erick\gerenciadorbiblioteca\repository\EmprestimoRepository.class
+com\erick\gerenciadorbiblioteca\GerenciadorBibliotecaApplication.class
+com\erick\gerenciadorbiblioteca\service\LivroService.class
+com\erick\gerenciadorbiblioteca\controller\UsuarioController.class
+com\erick\gerenciadorbiblioteca\repository\LivroRepository.class
+com\erick\gerenciadorbiblioteca\model\Livro.class

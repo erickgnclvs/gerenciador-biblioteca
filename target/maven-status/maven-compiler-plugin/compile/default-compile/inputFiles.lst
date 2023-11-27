@@ -1,0 +1,14 @@
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\controller\UsuarioController.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\repository\LivroRepository.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\service\UsuarioService.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\model\EmptyJson.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\repository\UsuarioRepository.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\model\Emprestimo.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\model\Livro.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\GerenciadorBibliotecaApplication.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\service\LivroService.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\controller\LivroController.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\service\EmprestimoService.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\controller\EmprestimoController.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\repository\EmprestimoRepository.java
+C:\Users\erick\Development\gerenciador-biblioteca\src\main\java\com\erick\gerenciadorbiblioteca\model\Usuario.java

@@ -30,7 +30,7 @@ POST http://localhost:8080/api/v1/livros
 Content-Type: application/json
 
 {
-  "titulo": "Harry Potter e as Relíquias da Morte parte 2",
+  "titulo": "Harry Potter e o Enigma do Príncipe",
   "autor": "J.K. Rowling"
 }
 
@@ -80,9 +80,9 @@ POST http://localhost:8080/api/v1/usuarios
 Content-Type: application/json
 
 {
-  "nome": "nati",
-  "telefone": "54991748273",
-  "email": "nati@mail"
+  "nome": "Erick",
+  "telefone": "54996902476",
+  "email": "erick@mail"
 }
 
 ###
@@ -100,18 +100,18 @@ POST http://localhost:8080/api/v1/emprestimos
 Content-Type: application/json
 
 {
-  "usuario": 103,
-  "livro": 55
+  "usuario": 2,
+  "livro": 1
 }
 
 ###
 GET http://localhost:8080/api/v1/emprestimos
 
 ###
-PATCH http://localhost:8080/api/v1/emprestimos/403
+PATCH http://localhost:8080/api/v1/emprestimos/1
 
 ###
-GET http://localhost:8080/api/v1/livros/53/emprestimos/ativo
+GET http://localhost:8080/api/v1/livros/102/emprestimos
 
 ###
 GET http://localhost:8080/api/v1/livros/53/emprestimos/devolvidos
@@ -120,7 +120,7 @@ GET http://localhost:8080/api/v1/livros/53/emprestimos/devolvidos
 GET http://localhost:8080/api/v1/usuarios/103/emprestimos
 
 ###
-GET http://localhost:8080/api/v1/usuarios/103/emprestimos/ativos
+GET http://localhost:8080/api/v1/livros/1/emprestimos/ativo
 
 ###
 GET http://localhost:8080/api/v1/usuarios/103/emprestimos/devolvidos
